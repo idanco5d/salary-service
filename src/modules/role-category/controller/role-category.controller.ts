@@ -6,14 +6,14 @@ import { RoleCategoryDto } from '../model/role-category.dto';
 export class RoleCategoryController {
   constructor(private roleCategoryService: RoleCategoryService) {}
 
-  @Post()
+  @Post('add')
   async addRoleCategory(
     @Body() roleCategoryDto: RoleCategoryDto,
   ): Promise<RoleCategoryDto> {
     return this.roleCategoryService.addRoleCategory(roleCategoryDto);
   }
 
-  @Get()
+  @Get('find-all')
   async findAll(): Promise<RoleCategoryDto[]> {
     return this.roleCategoryService.findAll();
   }

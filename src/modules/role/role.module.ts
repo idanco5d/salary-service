@@ -6,6 +6,8 @@ import {
   RoleCategory,
   RoleCategorySchema,
 } from '../role-category/model/role-category.schema';
+import { RoleController } from './controller/role.controller';
+import { RoleService } from './service/role.service';
 
 @Module({
   imports: [
@@ -15,5 +17,8 @@ import {
     ]),
     RoleCategoryModule,
   ],
+  controllers: [RoleController],
+  providers: [RoleService],
+  exports: [RoleService],
 })
 export class RoleModule {}
