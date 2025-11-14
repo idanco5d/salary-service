@@ -1,5 +1,6 @@
 import { Connection } from 'mongoose';
 import {
+  cleanupTestData,
   closeAndStopDatabase,
   createTestDatabase,
   TestDatabaseInstance,
@@ -35,12 +36,7 @@ describe('Role E2E test', () => {
     await app.close();
   });
 
-  afterEach(async () => {
-    const collections = mongoConnection.collections;
-    for (const key in collections) {
-      await collections[key].deleteMany({});
-    }
-  });
+  afterEach(async () => cleanupTestData(mongoConnection));
 
   it('should add a role and get it', async () => {
     const roleDto: RoleDto = {
