@@ -18,14 +18,11 @@ export class RoleService {
 
   async addRole(roleDto: RoleDto): Promise<Role> {
     let roleCategory: RoleCategory;
-    try {
+    if (roleDto.roleCategory.id !== undefined) {
       roleCategory = await this.roleCategoryService.findById(
-        roleDto.roleCategory.id,
+        roleDto.roleCategory.id.toString(),
       );
-    } catch (error) {
-      if (!(error instanceof NotFoundException)) {
-        throw error;
-      }
+    } else {
       roleCategory = await this.roleCategoryService.addRoleCategory(
         roleDto.roleCategory,
       );
